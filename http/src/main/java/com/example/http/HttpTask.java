@@ -67,6 +67,7 @@ public class HttpTask<T> implements Runnable, Delayed {
             this.iHttpRequest.execute();
         }catch (Exception e) {
             // 捕捉到异常，然后将请求线程丢入到重试机制中
+            setDelayTime(3000);
             ThreadManager.getInstance().addFailedTask(this);
         }
         this.iHttpRequest.execute();
